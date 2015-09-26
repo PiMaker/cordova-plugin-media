@@ -269,6 +269,12 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
         }
     }
 
+    public short[] snoop() {
+      short [] arr = new short[1024];
+      GrabAudio.snoop(arr, 0);
+      return arr;
+    }
+
     /**
      * Callback to be invoked when playback of a media source has completed.
      *
@@ -501,13 +507,13 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
                                 sendErrorStatus(MEDIA_ERR_ABORTED);
                             }
                             return false;//we´re not ready yet
-                        } 
+                        }
                         else {
                            //reset the audio file
                             player.seekTo(0);
                             player.pause();
-                            return true; 
-                        } 
+                            return true;
+                        }
                     } else {
                         //reset the player
                         this.player.reset();
