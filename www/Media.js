@@ -103,6 +103,10 @@ Media.prototype.pause = function() {
     exec(null, this.errorCallback, "Media", "pausePlayingAudio", [this.id]);
 };
 
+Media.prototype.snoop = function(callback) {
+    exec(callback, function(err){console.error("ERROR: " + err)}, "Media", "snoop", [this.id]);
+};
+
 /**
  * Get duration of an audio file.
  * The duration is only set for audio that is playing, paused or stopped.
